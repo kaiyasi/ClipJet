@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">ClipJet</title>
+  <desc id="desc">Three sound meter bars in coral, blue, and gold.</desc>
+  <rect width="64" height="64" rx="14" fill="#fffefa"/>
+  <rect x="11" y="11" width="42" height="42" rx="10" fill="none" stroke="#17181a" stroke-opacity=".16"/>
+  <rect x="17" y="30" width="7" height="17" rx="2" fill="#db493d"/>
+  <rect x="28.5" y="18" width="7" height="29" rx="2" fill="#2d829e"/>
+  <rect x="40" y="25" width="7" height="22" rx="2" fill="#dda82c"/>
+  <path d="M16 49h32" fill="none" stroke="#17181a" stroke-linecap="round" stroke-opacity=".2"/>
+</svg>

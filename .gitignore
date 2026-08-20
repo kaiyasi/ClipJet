@@ -1,0 +1,14 @@
+# Keep the Serelix deployment repository outside the open-source source tree.
+.deployment/
+
+# Local dependencies, builds, and environment files.
+**/node_modules/
+**/.astro/
+**/dist/
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local runtime output.
+*.log
+backend/.tmp/

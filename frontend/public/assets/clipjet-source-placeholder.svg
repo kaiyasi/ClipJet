@@ -1,0 +1,22 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#173B59"/>
+      <stop offset="1" stop-color="#0B1828"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="210" y1="548" x2="987" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DB5C54"/>
+      <stop offset="1" stop-color="#86C4D8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#background)"/>
+  <path d="M0 625H1200" stroke="#B8E3E9" stroke-opacity=".16"/>
+  <path d="M0 665H1200" stroke="#B8E3E9" stroke-opacity=".08"/>
+  <path d="M0 705H1200" stroke="#B8E3E9" stroke-opacity=".06"/>
+  <circle cx="600" cy="330" r="118" fill="#0B1828" stroke="#86C4D8" stroke-opacity=".62" stroke-width="3"/>
+  <circle cx="600" cy="330" r="87" stroke="#B8E3E9" stroke-opacity=".18" stroke-width="2"/>
+  <path d="M570 276L666 330L570 384V276Z" fill="#F4EFE3"/>
+  <path d="M197 585C240 520 278 514 321 585C365 656 402 648 447 578C491 510 530 510 575 585C620 660 660 650 705 575C750 500 789 505 833 579C877 652 917 645 963 575" stroke="url(#signal)" stroke-width="8" stroke-linecap="round"/>
+  <text x="56" y="72" fill="#B8E3E9" fill-opacity=".76" font-family="monospace" font-size="20" letter-spacing="5">CLIPJET / SOURCE PREVIEW</text>
+  <text x="56" y="742" fill="#91A5B4" font-family="monospace" font-size="18" letter-spacing="4">WAITING FOR VIDEO THUMBNAIL</text>
+</svg>

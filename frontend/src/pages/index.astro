@@ -1,0 +1,215 @@
+---
+import '../styles/global.css';
+import '../styles/design-system.css';
+
+const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL || 'http://127.0.0.1:3000';
+const mockDownloads = import.meta.env.PUBLIC_MOCK_DOWNLOADS === 'true'
+  || (import.meta.env.DEV && import.meta.env.PUBLIC_MOCK_DOWNLOADS !== 'false');
+---
+
+<!doctype html>
+<html lang="zh-Hant" data-theme="light" data-api-base={apiBaseUrl} data-mock-downloads={mockDownloads ? 'true' : 'false'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f3ef" />
+    <meta name="description" content="ClipJet：把 YouTube 影片或播放清單整理成 MP4、MP3 或 ZIP。" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>ClipJet / 把聲音帶回來</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="ClipJet 首頁">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-copy"><strong>ClipJet</strong><small>DOWNLOAD DESK</small></span>
+      </a>
+
+      <div class="topbar-actions">
+        <div class="engine-state" aria-live="polite">
+          <span class="engine-dot" aria-hidden="true"></span>
+          <span id="health-label">ENGINE / CHECKING</span>
+        </div>
+        <button class="theme-button" type="button" data-theme-toggle aria-label="切換色彩模式">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v2M12 19v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M3 12h2M19 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            <circle cx="12" cy="12" r="4" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div class="page-grid">
+        <section class="hero-panel" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <div class="kicker-row"><span>01 / LISTEN</span><span>BLUE HOUR</span></div>
+            <p class="eyebrow"><span>01</span> A SMALL TOOL FOR BIG SOUNDS</p>
+            <h1 id="page-title"><span>把你的愛歌</span><span>帶回來。</span></h1>
+            <p class="hero-description">貼上一段 YouTube 連結，選一個你想留下的版本。單支影片，或整份播放清單，都從這裡開始。</p>
+            <div class="hero-features" aria-label="支援格式">
+              <span><b>MP4</b> 影音</span>
+              <span><b>MP3</b> 純音檔</span>
+              <span><b>ZIP</b> 整份帶走</span>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-hidden="true">
+            <img src="/assets/clipjet-blue-hour-sharp.png" alt="" />
+            <div class="hero-art-meta"><span>ORIGINAL SOUND</span><span>001</span></div>
+            <div class="hero-art-caption"><span>TAKE YOUR TIME</span><strong>把想留下的，帶回來。</strong></div>
+          </div>
+
+          <div class="hero-note">
+            <span class="note-mark" aria-hidden="true">○</span>
+            <p><strong>不需要登入</strong><br />工作完成後，檔案會在一段時間後自動清理。</p>
+          </div>
+        </section>
+
+        <section class="desk-card" aria-labelledby="download-title">
+          <div class="desk-topline" aria-hidden="true"><i></i><i></i><span>CLIPJET / PERSONAL UTILITY / 0315</span></div>
+          <header class="desk-header">
+            <div>
+              <p class="eyebrow"><span>02</span> DOWNLOAD DESK</p>
+              <h2 id="download-title">留下你想要的版本。</h2>
+            </div>
+            <span class="desk-count">02—05</span>
+          </header>
+
+          <div class="desk-body">
+            <form id="download-form" class="download-form">
+              <div class="field-block source-field">
+                <div class="field-heading">
+                  <label for="video-url">SOURCE <span>/ 來源連結</span></label>
+                  <small>影片或播放清單皆可</small>
+                </div>
+                <div class="url-control">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21.6 7.2a2.75 2.75 0 0 0-1.94-1.95C17.95 4.8 12 4.8 12 4.8s-5.95 0-7.66.45A2.75 2.75 0 0 0 2.4 7.2C1.95 8.91 1.95 12 1.95 12s0 3.09.45 4.8a2.75 2.75 0 0 0 1.94 1.95c1.71.45 7.66.45 7.66.45s5.95 0 7.66-.45a2.75 2.75 0 0 0 1.94-1.95c.45-1.71.45-4.8.45-4.8s0-3.09-.45-4.8Z" />
+                    <path d="m10 15 5-3-5-3v6Z" />
+                  </svg>
+                  <input id="video-url" name="url" type="url" inputmode="url" autocomplete="url" placeholder="貼上 YouTube 連結…" required />
+                  <span class="paste-button" data-paste>貼上</span>
+                </div>
+              </div>
+
+              <div class="settings-grid">
+                <fieldset class="field-block">
+                  <legend>SCOPE <span>/ 範圍</span></legend>
+                  <div class="segmented-control">
+                    <button type="button" class="segment-option is-selected" data-scope="video" aria-pressed="true">
+                      <span class="segment-symbol">01</span><span><strong>單支影片</strong><small>ONE VIDEO</small></span>
+                    </button>
+                    <button type="button" class="segment-option" data-scope="playlist" aria-pressed="false">
+                      <span class="segment-symbol">ALL</span><span><strong>整份播放清單</strong><small>FULL PLAYLIST</small></span>
+                    </button>
+                  </div>
+                </fieldset>
+
+                <fieldset class="field-block">
+                  <legend>FORMAT <span>/ 格式</span></legend>
+                  <div class="format-control">
+                    <button type="button" class="format-option is-selected" data-format="mp4" aria-pressed="true">
+                      <span class="format-symbol">▰</span><span><strong>MP4</strong><small>影片</small></span>
+                    </button>
+                    <button type="button" class="format-option" data-format="mp3" aria-pressed="false">
+                      <span class="format-symbol">♫</span><span><strong>MP3</strong><small>純音檔</small></span>
+                    </button>
+                  </div>
+                </fieldset>
+              </div>
+
+              <fieldset class="field-block quality-block" data-quality-group="video">
+                <legend>VIDEO QUALITY <span>/ 畫質</span></legend>
+                <div class="quality-control">
+                  <button type="button" class="quality-option" data-video-quality="best" aria-pressed="false"><strong>最高</strong><small>BEST</small></button>
+                  <button type="button" class="quality-option is-selected" data-video-quality="1080" aria-pressed="true"><strong>1080p</strong><small>FULL HD</small></button>
+                  <button type="button" class="quality-option" data-video-quality="720" aria-pressed="false"><strong>720p</strong><small>HD</small></button>
+                  <button type="button" class="quality-option" data-video-quality="480" aria-pressed="false"><strong>480p</strong><small>STANDARD</small></button>
+                  <button type="button" class="quality-option" data-video-quality="360" aria-pressed="false"><strong>360p</strong><small>LIGHT</small></button>
+                </div>
+              </fieldset>
+
+              <fieldset class="field-block quality-block" data-quality-group="audio" hidden>
+                <legend>AUDIO QUALITY <span>/ 音質</span></legend>
+                <div class="quality-control audio-quality-control">
+                  <button type="button" class="quality-option" data-audio-quality="320k" aria-pressed="false"><strong>320K</strong><small>DETAIL</small></button>
+                  <button type="button" class="quality-option" data-audio-quality="256k" aria-pressed="false"><strong>256K</strong><small>RICH</small></button>
+                  <button type="button" class="quality-option is-selected" data-audio-quality="192k" aria-pressed="true"><strong>192K</strong><small>EVERYDAY</small></button>
+                  <button type="button" class="quality-option" data-audio-quality="128k" aria-pressed="false"><strong>128K</strong><small>LIGHT</small></button>
+                </div>
+              </fieldset>
+
+              <div class="submit-row">
+                <p class="permission-note"><span aria-hidden="true">○</span><span>僅下載你擁有或已獲授權使用的內容。</span></p>
+                <button type="submit" class="submit-button" data-submit><span>開始下載</span><span class="submit-mark" aria-hidden="true">↗</span></button>
+              </div>
+            </form>
+
+            <section class="progress-panel" data-progress-panel hidden aria-live="polite">
+              <div class="progress-top">
+                <div><p class="eyebrow"><span>03</span> WORKING</p><h3 data-progress-title>正在準備</h3></div>
+                <strong data-progress-percent>0%</strong>
+              </div>
+              <div class="progress-line"><span data-progress-bar></span></div>
+              <div class="progress-details"><span data-progress-phase>等待下載</span><span data-progress-speed>—</span><span data-progress-eta>ETA —</span></div>
+              <button type="button" class="cancel-button" data-cancel>取消這次下載</button>
+            </section>
+
+            <p class="form-message" data-form-message role="status" hidden></p>
+
+            <section class="result-panel" data-result-panel hidden aria-labelledby="result-title">
+              <header class="result-header">
+                <div><p class="eyebrow"><span>03</span> DOWNLOAD READY</p><h2 id="result-title" data-result-title>你的檔案，準備好了。</h2></div>
+                <button type="button" class="reset-button" data-reset>重新開始 <span aria-hidden="true">↺</span></button>
+              </header>
+
+              <div class="source-preview">
+                <div class="source-thumbnail"><img data-result-thumbnail data-source-preview="true" src="/assets/clipjet-source-placeholder.png" alt="" /></div>
+                <div class="source-details">
+                  <span class="source-label">SOURCE / 來源</span>
+                  <strong data-result-source-title>YouTube 影片來源</strong>
+                  <span class="source-url" data-result-source-url>—</span>
+                  <div class="result-facts" aria-label="下載資訊">
+                    <span><strong data-result-format>MP4</strong><small>格式</small></span>
+                    <span><strong data-result-quality>1080p</strong><small>品質</small></span>
+                    <span><strong data-result-scope>單支影片</strong><small>範圍</small></span>
+                  </div>
+                </div>
+              </div>
+
+              <a class="archive-button" data-archive-download href="#" download hidden>
+                <span class="archive-copy"><small data-archive-kind>DOWNLOAD MP4 / 下載整個 MP4</small><strong data-archive-label>下載整個 MP4</strong><small data-archive-note>單支檔案 · 1080p · 已完成</small></span>
+                <span class="archive-action" aria-hidden="true">
+                  <svg class="download-glyph" viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 3v12" />
+                    <path d="m7 11 5 5 5-5" />
+                    <path d="M4 21h16" />
+                  </svg>
+                </span>
+              </a>
+
+              <div class="tracklist" data-tracklist hidden>
+                <div class="tracklist-heading"><span data-track-label>FILES / 檔案</span><span data-track-count>0 FILES</span></div>
+                <div class="track-items" data-track-items></div>
+              </div>
+              <p class="result-note">檔案會在工作結束後自動清理，請及時下載。</p>
+            </section>
+          </div>
+
+          <footer class="desk-footer" aria-label="下載流程索引">
+            <span class="desk-index-cell"><small>01 / SOURCE</small><b>貼上連結</b></span>
+            <span class="desk-index-cell"><small>02 / EDIT</small><b>選擇版本</b></span>
+            <span class="desk-index-cell"><small>03 / EXPORT</small><b>下載檔案</b></span>
+            <span class="desk-footer-note"><span>PUBLIC · NO LOGIN REQUIRED</span><span>MP4 / MP3 / ZIP</span></span>
+          </footer>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer"><span>CLIPJET / PRIVATE LITTLE UTILITY</span><span>MADE FOR THE QUIET PARTS OF THE DAY</span></footer>
+
+    <script>
+      import '../scripts/app';
+    </script>
+  </body>
+</html>
