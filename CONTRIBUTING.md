@@ -9,7 +9,7 @@ process is lightweight.
   Please keep contributions aligned with that purpose; features whose primary
   aim is to bypass access controls or Terms of Service are out of scope.
 - By contributing, you agree that your contributions are licensed under the
-  project's [MIT License](LICENSE).
+  project's [KYL Open License](LICENSE).
 
 ## Development setup
 
